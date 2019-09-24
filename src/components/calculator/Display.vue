@@ -9,7 +9,7 @@ export default {
   name: 'calc-display',
   props: {
       display: {
-          type: String
+          type: [String, Number]
       }
   },
   data: () => ({

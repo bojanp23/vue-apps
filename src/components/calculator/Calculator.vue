@@ -17,11 +17,11 @@
             class="btn--large btn--secondary">C
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="percents"
             class="btn--secondary">%
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="sum"
             class="btn--operator">+
           </calc-btn>
           <calc-btn 
@@ -34,7 +34,7 @@
             :action="appendNumber">3
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="substract"
             class="btn--operator">-
           </calc-btn>
           <calc-btn 
@@ -47,7 +47,7 @@
             :action="appendNumber">6
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="multiply"
             class="btn--operator">*
           </calc-btn>
           <calc-btn 
@@ -60,7 +60,7 @@
             :action="appendNumber">9
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="divide"
             class="btn--operator">/
           </calc-btn>
           <calc-btn
@@ -68,10 +68,10 @@
             class="btn--large">0
           </calc-btn>
           <calc-btn 
-            :action="appendNumber">.
+            :action="decimal">.
           </calc-btn>
           <calc-btn
-            :action="appendNumber"
+            :action="equal"
             class="btn--operator">=
           </calc-btn>
         </div>
@@ -91,17 +91,68 @@ export default {
   },
   data () {
     return {
-      result: ''
+      result: 0,
+      previuousResult: null,
+      operator: null,
+      operatorClicked: false
     }
   },
   methods: {
+    setPreviousResult () {
+      this.previuousResult = this.result
+      this.operatorClicked = true
+    },
+
     clear () {
       this.result = ''
     },
 
     appendNumber (e) {
-      var value = e.target.innerHTML
-      this.result = this.result + value
+      if (this.operatorClicked) {
+        this.result = ''
+        this.operatorClicked = false
+      }
+      var value = e.target.innerText
+      this.result = parseFloat(this.result + value)
+    },
+
+    percents () {
+      this.result = this.result / 100
+    },
+
+    decimal () {
+      this.result = this.result + ''
+      if (this.result.indexOf('.') === -1) {
+        this.result = this.result + '.'
+      }
+    },
+
+    sum () {
+      this.operator = (a, b) => a + b
+      this.setPreviousResult()
+    },
+
+    substract () {
+      this.operator = (a, b) => b - a
+      this.setPreviousResult()
+    },
+
+    multiply () {
+      this.operator = (a, b) => a * b
+      this.setPreviousResult()
+    },
+
+    divide () {
+      this.operator = (a, b) => b / a
+      this.setPreviousResult()
+    },
+
+    equal () {
+      this.result = this.operator(
+        parseFloat(this.result),
+        parseFloat(this.previuousResult)
+      )
+      this.previuousResult = this.result
     }
   }
 }
