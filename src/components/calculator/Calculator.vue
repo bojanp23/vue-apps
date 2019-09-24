@@ -24,39 +24,39 @@
             :action="sum"
             class="btn--operator">+
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">1
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">2
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">3
           </calc-btn>
           <calc-btn
             :action="substract"
             class="btn--operator">-
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">4
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">5
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">6
           </calc-btn>
           <calc-btn
             :action="multiply"
             class="btn--operator">*
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">7
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">8
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="appendNumber">9
           </calc-btn>
           <calc-btn
@@ -67,7 +67,7 @@
             :action="appendNumber"
             class="btn--large">0
           </calc-btn>
-          <calc-btn 
+          <calc-btn
             :action="decimal">.
           </calc-btn>
           <calc-btn
